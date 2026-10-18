@@ -1,0 +1,16 @@
+{
+  "name": "สถานีไฟล์",
+  "short_name": "สถานีไฟล์",
+  "description": "รวม จัดหน้า แยก PDF และแปลงรูปภาพ ทำงานในเครื่อง ไฟล์ไม่ถูกอัปโหลด",
+  "lang": "th",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEF1F4",
+  "theme_color": "#2346C8",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
