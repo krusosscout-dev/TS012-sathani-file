@@ -1,7 +1,7 @@
 /* สถานีไฟล์ — offline cache.
    Page: network first (updates arrive at once), cached copy when offline.
    Libraries and fonts: cached after first use. Change VERSION only when the library list changes. */
-const VERSION = 'sathani-file-v2';
+const VERSION = 'sathani-file-v3';
 const CORE = ['./', './index.html', './favicon.svg', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const LIBS = [
   'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
@@ -32,7 +32,7 @@ self.addEventListener('fetch', event => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.pathname.startsWith('/_vercel/')) return;   // visitor statistics: always live, never cached
+  if (url.pathname.startsWith('/_vercel/') || url.pathname.startsWith('/api/')) return;   // statistics: always live, never cached
   const sameOrigin = url.origin === self.location.origin;
   const isPage = req.mode === 'navigate' || (sameOrigin && (url.pathname === '/' || url.pathname.endsWith('.html')));
   const isLib = url.hostname === 'cdnjs.cloudflare.com' || url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
