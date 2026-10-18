@@ -1540,20 +1540,26 @@ function renderStats(d){
 async function refreshStats(){
   if (!statsOn || statsBusy || Date.now() - statsAt < 15000) return;
   statsBusy = true;
-  let counted = false; try { counted = sessionStorage.getItem('sfVisit') === '1'; } catch (e) {}
+  // one visit per device per day (Thai date); the owner's devices are never counted
+  const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  let counted = isOwnerDevice();
+  if (!counted) { try { counted = localStorage.getItem('sfVisitDay') === day; } catch (e) { try { counted = sessionStorage.getItem('sfVisit') === day; } catch (e2) {} } }
   try {
     const r = await fetch('/api/stats', counted ? { cache: 'no-store' }
       : { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type: 'visit' }) });
     if (r.ok) {
       const d = await r.json();
-      if (!counted) { try { sessionStorage.setItem('sfVisit', '1'); } catch (e) {} }
+      if (!counted) { try { localStorage.setItem('sfVisitDay', day); } catch (e) { try { sessionStorage.setItem('sfVisit', day); } catch (e2) {} } }
       renderStats(d); statsAt = Date.now();
     }
   } catch (e) { /* offline or not set up yet: the home page simply has no numbers */ }
   statsBusy = false;
 }
+function isOwnerDevice(){
+  try { const v = JSON.parse(localStorage.getItem('sfRegistered') || 'null'); return !!(v && v.owner); } catch (e) { return false; }
+}
 function trackFiles(tool, n){
-  if (!statsOn || !n) return;
+  if (!statsOn || !n || isOwnerDevice()) return;
   try {
     fetch('/api/stats', { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, body: JSON.stringify({ type: 'files', tool, n }) })
       .then(r => r.ok ? r.json() : null).then(d => { if (d) { renderStats(d); statsAt = Date.now(); } }).catch(() => {});
@@ -1679,8 +1685,8 @@ $('#adm-login').addEventListener('submit', async e => {
   if (okLogin) {
     $('#adm-login').hidden = true; $('#adm-body').hidden = false; $('#adm-pw').value = '';
     // the owner's own devices skip the registration form from now on
-    try { if (!localStorage.getItem(REG_KEY)) localStorage.setItem(REG_KEY, JSON.stringify({ owner: true, at: new Date().toISOString() })); } catch (e) {}
-    setStatus(sAdm2, 'เครื่องนี้ข้ามฟอร์มลงทะเบียนแล้ว เพราะเป็นเครื่องของผู้ดูแล');
+    try { localStorage.setItem(REG_KEY, JSON.stringify({ owner: true, at: new Date().toISOString() })); } catch (e) {}
+    setStatus(sAdm2, 'เครื่องนี้เป็นเครื่องของผู้ดูแลแล้ว: ไม่ต้องกรอกฟอร์ม และไม่ถูกนับในสถิติ');
   }
   else admPw = '';
 });
