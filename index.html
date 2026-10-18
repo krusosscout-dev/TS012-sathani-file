@@ -1637,7 +1637,12 @@ $('#adm-login').addEventListener('submit', async e => {
   $('#adm-go').disabled = true;
   const okLogin = await admLoad(sAdm);
   $('#adm-go').disabled = false;
-  if (okLogin) { $('#adm-login').hidden = true; $('#adm-body').hidden = false; $('#adm-pw').value = ''; }
+  if (okLogin) {
+    $('#adm-login').hidden = true; $('#adm-body').hidden = false; $('#adm-pw').value = '';
+    // the owner's own devices skip the registration form from now on
+    try { if (!localStorage.getItem(REG_KEY)) localStorage.setItem(REG_KEY, JSON.stringify({ owner: true, at: new Date().toISOString() })); } catch (e) {}
+    setStatus(sAdm2, 'เครื่องนี้ข้ามฟอร์มลงทะเบียนแล้ว เพราะเป็นเครื่องของผู้ดูแล');
+  }
   else admPw = '';
 });
 $('#adm-q').addEventListener('input', admRender);
