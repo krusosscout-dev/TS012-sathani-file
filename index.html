@@ -45,7 +45,8 @@ html{-webkit-text-size-adjust:100%}
 button,label,.drop,.pcard,.addtile,.empty{-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.wrap{max-width:1140px;margin:0 auto;padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:24px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+.app{display:grid;gap:18px}
 header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 24px}
 header > div{display:grid;gap:2px;min-width:0}
 .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -115,6 +116,7 @@ input[type=checkbox],input[type=radio]{accent-color:var(--accent)}
 .tools .sep{width:1px;height:26px;background:var(--line)}
 .selall{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;padding-right:4px;white-space:nowrap}
 .selall input{width:18px;height:18px}
+.count .cs{display:none}
 .count{font:13px var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tools .grow{flex:1 1 0}
 .desk{background:var(--desk);padding:22px 22px 26px 34px;border-radius:0 0 14px 14px;min-height:260px}
@@ -135,7 +137,7 @@ input[type=checkbox],input[type=radio]{accent-color:var(--accent)}
 .thumb .ph{background:var(--sunk);color:var(--muted);box-shadow:none}
 .ptools{position:absolute;top:6px;right:6px;display:flex;flex-direction:column;gap:3px;opacity:0;transition:opacity .12s}
 .pcard:hover .ptools,.pcard:focus-within .ptools,.pcard.sel .ptools{opacity:1}
-@media (hover:none){.ptools{opacity:1}}
+@media (hover:none){.ptools{opacity:0;visibility:hidden}.pcard.sel .ptools{opacity:1;visibility:visible}}
 .ptools button{appearance:none;width:28px;height:28px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
 .ptools button:hover{color:var(--accent);border-color:var(--accent)}
 .ptools button.del:hover{color:var(--danger);border-color:var(--danger)}
@@ -182,24 +184,189 @@ input[type=checkbox],input[type=radio]{accent-color:var(--accent)}
 .note{font-size:13px;color:var(--muted);display:grid;gap:4px;padding:12px 14px;border-radius:10px;background:var(--sunk)}
 .note p{margin:0}
 kbd{font:12px var(--f-mono);border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--surface)}
+/* ---------- app header link ---------- */
+.back{display:inline-flex;align-items:center;gap:2px;font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;width:max-content;padding:2px 6px 2px 0;border-radius:6px}
+.back:hover{color:var(--accent)}
+.back svg{width:16px;height:16px}
+.h1link{color:inherit;text-decoration:none}
+.h1link span{color:var(--accent)}
+/* ---------- home ---------- */
+.home{display:grid;gap:clamp(28px,5vw,48px);padding-bottom:8px}
+.hnav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:22px;color:var(--ink);text-decoration:none}
+.brand .b2{color:var(--accent)}
+.mark{display:inline-flex;color:var(--accent)} .mark svg{width:34px;height:34px}
+a.btn{text-decoration:none}
+.btn.big{font-size:16px;padding:12px 22px;border-radius:11px}
+.btn.big svg{width:19px;height:19px}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:center}
+.hero-t{display:grid;gap:16px;justify-items:start}
+.hero-h{font-family:var(--f-display);font-weight:700;font-size:clamp(32px,5.4vw,56px);line-height:1.12;margin:0;text-wrap:balance}
+.hero-h span{color:var(--accent);white-space:nowrap}
+.hero-p{margin:0;color:var(--muted);font-size:clamp(15px,1.6vw,17px);max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px}
+.hero-v{background:var(--desk);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,32px) clamp(14px,2.6vw,28px) clamp(16px,2.4vw,24px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,2vw,22px);align-items:end}
+.mcol{display:grid;justify-items:center;gap:6px;position:relative;min-width:0}
+.mp{width:100%;aspect-ratio:3/4;background:#fff;border-radius:3px;box-shadow:0 1px 3px rgb(0 0 0/.16),0 0 0 1px rgb(0 0 0/.05);padding:13% 12%;display:grid;gap:7%;align-content:start}
+.mp i{display:block;height:4px;border-radius:2px;background:#D6DCE4}
+.mp i.h{height:7px;width:62%;background:#96A2B1}
+.mp i.s{width:70%}
+.mp i.c{justify-self:center}
+.mp .pic{display:block;aspect-ratio:4/3;border-radius:2px;background:linear-gradient(135deg,#B9E3CF,#7FC4A5)}
+.mp .seal{display:block;justify-self:center;width:34%;aspect-ratio:1;border-radius:50%;background:#E8B061;margin-block:4%}
+.mp.lift{transform:translateY(-12px) rotate(-5deg);box-shadow:0 12px 24px rgb(20 40 120/.22),0 0 0 3px var(--accent);animation:bob 3.2s ease-in-out infinite}
+.mcol.mins::before{content:"";position:absolute;left:calc(-1 * clamp(5px,1vw,11px) - 2px);top:6%;height:62%;width:4px;border-radius:2px;background:var(--accent)}
+@keyframes bob{0%,100%{transform:translateY(-12px) rotate(-5deg)}50%{transform:translateY(-18px) rotate(-3deg)}}
+.mtag{max-width:100%;font-size:clamp(9px,1.1vw,12px);font-weight:500;padding:1px 6px;border-radius:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tc);background:color-mix(in srgb,var(--tc) 14%,transparent)}
+.mno{font:500 11px var(--f-mono);color:var(--muted);line-height:1}
+.hcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.hcard{display:grid;gap:8px;align-content:start;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.hcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.hcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hic{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.hic svg{width:24px;height:24px}
+.hcard h3{font-family:var(--f-display);font-size:19px;font-weight:600;margin:4px 0 0}
+.hcard p{margin:0;color:var(--muted);font-size:14px}
+.hcard .go{font-weight:600;font-size:14px;color:var(--accent);margin-top:4px}
+.hfacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 28px;padding-block:20px;border-block:1px solid var(--line)}
+.hfacts div{display:grid;gap:2px}
+.hfacts b{font-family:var(--f-display);font-weight:600;font-size:16px}
+.hfacts span{color:var(--muted);font-size:14px}
+.hsteps{display:grid;gap:16px;justify-items:start}
+.hsteps h3{font-family:var(--f-display);font-size:22px;font-weight:600;margin:0}
+.hsteps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;width:100%;counter-reset:st}
+.hsteps li{counter-increment:st;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;align-items:start}
+.hsteps li::before{content:counter(st);grid-row:span 2;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 15px var(--f-mono);background:var(--accent);color:var(--accent-ink)}
+.hsteps li b{font-weight:600}
+.hsteps li span{color:var(--muted);font-size:14px}
+.hfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px;font-size:13px;color:var(--muted);padding-top:18px;border-top:1px solid var(--line)}
+@media (max-width:820px){
+  .hero{grid-template-columns:minmax(0,1fr)}
+  .hcards,.hfacts,.hsteps ol{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.mp.lift{animation:none}}
+
+/* ---------- fit small screens ---------- */
+@media (max-width:640px){
+  .wrap{padding-block:16px 40px;gap:14px}
+  .app{gap:14px}
+  .tab{padding:9px 4px;font-size:13px}
+  .tab small{display:none}
+  .tools{padding:8px 10px;gap:6px}
+  .tools .sep{display:none}
+  .tools .btn{padding:0;width:40px;height:40px;justify-content:center}
+  .tools .btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .tools .btn svg{width:19px;height:19px}
+  .tools{flex-wrap:nowrap}
+  .tools .grp{flex-wrap:nowrap;gap:4px}
+  .tools .grow{flex:1 1 0;min-width:0}
+  .selall{padding-right:0}
+  .selall span,.count .cl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .count .cs{display:inline}
+  #b-add{display:none}
+  .panel,.export{padding:16px}
+  .hd-r .lede{font-size:13px}
+  .bar .btn.primary{flex:1 1 auto;justify-content:center}
+}
+@media (max-width:360px){
+  .count{display:none}
+  .tools .btn{width:36px;height:36px}
+  .grid{gap:18px 24px}
+}
+@media (pointer:coarse){
+  select,input[type=text],input[type=number]{font-size:16px}
+  .btn{min-height:40px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="wrap">
+  <!-- ================= HOME ================= -->
+  <section class="home" id="home" hidden>
+    <nav class="hnav">
+      <a class="brand" href="#home"><span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="currentColor"/><rect x="7" y="6" width="8" height="11" rx="1.5" fill="#fff"/><rect x="17" y="6" width="8" height="11" rx="1.5" fill="#fff" opacity=".7"/><rect x="7" y="19" width="18" height="7" rx="1.5" fill="#fff" opacity=".85"/></svg></span><span>สถานี<span class="b2">ไฟล์</span></span></a>
+      <a class="btn primary" href="#org">เข้าใช้งาน</a>
+    </nav>
+
+    <div class="hero">
+      <div class="hero-t">
+        <div class="eyebrow">เครื่องมือจัดการไฟล์สำหรับครู</div>
+        <h2 class="hero-h">รวม สลับ แยก และแปลงไฟล์ <span>ในที่เดียว</span></h2>
+        <p class="hero-p">จัดเอกสาร PDF รูปกิจกรรม และไฟล์รายงานให้เสร็จในไม่กี่คลิก ใช้ฟรี ไม่ต้องสมัครสมาชิก ไฟล์ทั้งหมดประมวลผลในเครื่องของคุณ ไม่ถูกส่งขึ้นอินเทอร์เน็ต</p>
+        <div class="hero-cta">
+          <a class="btn primary big" href="#org">เริ่มใช้งาน<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <button class="btn big install js-install" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 20h14"/></svg>ติดตั้งเป็นแอป</button>
+        </div>
+        <p class="ioshint js-ioshint" hidden>ติดตั้งเป็นแอปบน iPhone/iPad: กดปุ่มแชร์ของ Safari แล้วเลือก "เพิ่มไปยังหน้าจอโฮม"</p>
+      </div>
+      <div class="hero-v" aria-hidden="true">
+        <div class="mcol"><div class="mp"><i class="h"></i><i></i><i></i><i class="s"></i><i></i><i class="s"></i></div><span class="mtag" style="--tc:var(--c0)">รายงาน · 1</span><span class="mno">1</span></div>
+        <div class="mcol"><div class="mp"><i class="h"></i><b class="pic"></b><i></i><i class="s"></i></div><span class="mtag" style="--tc:var(--c2)">ภาพกิจกรรม</span><span class="mno">2</span></div>
+        <div class="mcol mins"><div class="mp lift"><i class="h c"></i><b class="seal"></b><i class="s c"></i><i class="c"></i></div><span class="mtag" style="--tc:var(--c1)">เกียรติบัตร</span><span class="mno">3</span></div>
+        <div class="mcol"><div class="mp"><i class="h"></i><i></i><i class="s"></i><i></i><i></i><i class="s"></i></div><span class="mtag" style="--tc:var(--c0)">รายงาน · 2</span><span class="mno">4</span></div>
+      </div>
+    </div>
+
+    <div class="hcards">
+      <a class="hcard" href="#org">
+        <span class="hic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="9" rx="1"/><rect x="3" y="15" width="7" height="6" rx="1"/><path d="M17.5 15v6M14.5 18h6"/></svg></span>
+        <h3>จัดหน้า · รวม · แยก</h3>
+        <p>รวม PDF กับรูปเป็นไฟล์เดียว ลากสลับหน้า หมุน ลบ หรือแยกหน้าออกเป็นไฟล์ใหม่</p>
+        <span class="go">เปิดเครื่องมือ →</span>
+      </a>
+      <a class="hcard" href="#pdf2img">
+        <span class="hic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/></svg></span>
+        <h3>PDF เป็นรูป</h3>
+        <p>แปลงหน้าเอกสารเป็น JPG หรือ PNG สำหรับใส่สไลด์ โพสต์ หรือส่งในกลุ่ม LINE</p>
+        <span class="go">เปิดเครื่องมือ →</span>
+      </a>
+      <a class="hcard" href="#img">
+        <span class="hic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11m0 0-3-3m3 3-3 3"/><path d="M20 17H9m0 0 3-3m-3 3 3 3"/></svg></span>
+        <h3>แปลงรูปภาพ</h3>
+        <p>เปลี่ยนเป็น JPG, PNG หรือ WEBP และย่อขนาดรูปทีละหลายรูป ให้ไฟล์เล็กลงก่อนส่งงาน</p>
+        <span class="go">เปิดเครื่องมือ →</span>
+      </a>
+    </div>
+
+    <div class="hfacts">
+      <div><b>ไฟล์ไม่ออกจากเครื่อง</b><span>ทุกขั้นตอนทำในเบราว์เซอร์ของคุณ เหมาะกับเอกสารราชการและข้อมูลนักเรียน</span></div>
+      <div><b>ใช้ได้ทุกอุปกรณ์</b><span>คอมพิวเตอร์ แท็บเล็ต และมือถือ หน้าจอปรับตามขนาดเครื่องเอง</span></div>
+      <div><b>ใช้ได้แม้ไม่มีเน็ต</b><span>ติดตั้งเป็นแอปครั้งเดียว แล้วเปิดใช้งานได้ทุกที่</span></div>
+    </div>
+
+    <div class="hsteps">
+      <h3>ใช้งานใน 3 ขั้น</h3>
+      <ol>
+        <li><b>เลือกไฟล์</b><span>ลาก PDF หรือรูปมาวาง หรือกดเลือกจากเครื่อง</span></li>
+        <li><b>จัดการ</b><span>สลับ หมุน ลบหน้า หรือเลือกเฉพาะหน้าที่ต้องการ</span></li>
+        <li><b>บันทึก</b><span>ตั้งชื่อไฟล์ แล้วบันทึกลงเครื่อง หรือแชร์ต่อจากมือถือ</span></li>
+      </ol>
+      <a class="btn primary big" href="#org">เริ่มใช้งาน</a>
+    </div>
+
+    <footer class="hfoot">
+      <span>พัฒนาโดย ครูนรากรณ์ จูงาม · โรงเรียนวัดบางปูน สพป.สิงห์บุรี</span>
+      <span>ใช้ฟรีเพื่อการศึกษา</span>
+    </footer>
+  </section>
+
+  <div class="app" id="app" hidden>
   <header>
     <div>
-      <div class="eyebrow">PDF · JPG · PNG · WEBP</div>
-      <h1>สถานี<span>ไฟล์</span></h1>
+      <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>หน้าแรก</a>
+      <h1><a href="#home" class="h1link" title="กลับหน้าแรก">สถานี<span>ไฟล์</span></a></h1>
     </div>
     <div class="hd-r">
       <p class="lede">รวม จัดหน้า แยก และแปลงไฟล์ ทำงานในเครื่องของคุณทั้งหมด ไฟล์ไม่ถูกส่งออกไปที่ไหน</p>
       <div class="hd-acts">
         <label class="askloc" hidden><input type="checkbox" id="ask-loc" checked> <span id="ask-txt">ถามที่เก็บไฟล์และชื่อไฟล์ทุกครั้งที่บันทึก</span></label>
-        <button class="btn install" id="b-install" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 20h14"/></svg>ติดตั้งเป็นแอป</button>
+        <button class="btn install js-install" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 20h14"/></svg>ติดตั้งเป็นแอป</button>
       </div>
-      <p class="ioshint" id="ios-hint" hidden>ติดตั้งเป็นแอปบน iPhone/iPad: กดปุ่มแชร์ของ Safari แล้วเลือก "เพิ่มไปยังหน้าจอโฮม"</p>
+      <p class="ioshint js-ioshint" hidden>ติดตั้งเป็นแอปบน iPhone/iPad: กดปุ่มแชร์ของ Safari แล้วเลือก "เพิ่มไปยังหน้าจอโฮม"</p>
     </div>
   </header>
 
@@ -212,19 +379,20 @@ kbd{font:12px var(--f-mono);border:1px solid var(--line);border-bottom-width:2px
   <!-- ================= ORGANIZER ================= -->
   <section class="board" id="p-org" role="tabpanel" aria-labelledby="t-org">
     <div class="tools" id="tools">
-      <label class="selall"><input type="checkbox" id="sel-all"> เลือกทั้งหมด</label>
+      <label class="selall"><input type="checkbox" id="sel-all"> <span>เลือกทั้งหมด</span></label>
       <span class="count" id="count">0 หน้า</span>
       <span class="sep"></span>
       <div class="grp">
-        <button class="btn" id="b-rotl" title="หมุนซ้าย" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>หมุนซ้าย</button>
-        <button class="btn" id="b-rotr" title="หมุนขวา" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>หมุนขวา</button>
-        <button class="btn" id="b-swap" title="สลับตำแหน่งของ 2 หน้าที่เลือก" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></svg>สลับ 2 หน้า</button>
-        <button class="btn danger" id="b-del" title="ลบหน้าที่เลือก (Delete)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>ลบ</button>
+        <button class="btn" id="b-rotl" title="หมุนซ้าย" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span class="lbl">หมุนซ้าย</span></button>
+        <button class="btn" id="b-rotr" title="หมุนขวา" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg><span class="lbl">หมุนขวา</span></button>
+        <button class="btn" id="b-swap" title="สลับตำแหน่งของ 2 หน้าที่เลือก" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 20 4-4-4-4"/><path d="M21 16H7"/></svg><span class="lbl">สลับ 2 หน้า</span></button>
+        <button class="btn danger" id="b-del" title="ลบหน้าที่เลือก (Delete)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><span class="lbl">ลบ</span></button>
       </div>
       <span class="grow"></span>
       <div class="grp">
-        <button class="btn" id="b-undo" title="ย้อนกลับ (Ctrl+Z)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>ย้อนกลับ</button>
-        <button class="btn" id="b-add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>เพิ่มไฟล์</button>
+        <button class="btn" id="b-undo" title="ย้อนกลับ (Ctrl+Z)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg><span class="lbl">ย้อนกลับ</span></button>
+        <button class="btn" id="b-reset" title="เริ่มงานใหม่ (ล้างทุกหน้า)" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg><span class="lbl">เริ่มใหม่</span></button>
+        <button class="btn" id="b-add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span class="lbl">เพิ่มไฟล์</span></button>
       </div>
     </div>
     <div class="desk" id="desk">
@@ -314,6 +482,7 @@ kbd{font:12px var(--f-mono);border:1px solid var(--line);border-bottom-width:2px
     <p>เคล็ดลับ: คลิกหน้าเพื่อเลือก กด <kbd>Shift</kbd> ค้างแล้วคลิกเพื่อเลือกเป็นช่วง กด <kbd>Delete</kbd> เพื่อลบ และ <kbd>Ctrl</kbd>+<kbd>Z</kbd> เพื่อย้อนกลับ บนมือถือใช้ปุ่ม + ระหว่างหน้า แล้วเลือก "ย้ายหน้าที่เลือกมาตรงนี้"</p>
     <p>ยังไม่รองรับไฟล์ Word, PowerPoint และรูป HEIC จาก iPhone ให้บันทึกไฟล์เหล่านั้นเป็น PDF หรือ JPG ก่อน</p>
   </div>
+  </div>
 </div>
 
 <div class="pop" id="pop" role="menu" hidden>
@@ -347,8 +516,20 @@ tabs.forEach((t, i) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click(); }
   });
 });
-const hh = location.hash.slice(1);
-show(['org','pdf2img','img'].includes(hh) ? hh : 'org');
+/* ---------- home page / app ---------- */
+const homeEl = document.getElementById('home'), appEl = document.getElementById('app');
+const TOOLS = ['org', 'pdf2img', 'img'];
+const installedApp = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+function route(){
+  const h = location.hash.slice(1);
+  const tool = TOOLS.includes(h) ? h : (h !== 'home' && installedApp ? 'org' : null);
+  homeEl.hidden = !!tool; appEl.hidden = !tool;
+  if (tool) show(tool);
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+route();
+tabs.forEach(t => t.addEventListener('click', () => { try { history.replaceState(null, '', '#' + t.id.slice(2)); } catch (e) {} }));
 
 /* ---------- saving ---------- */
 let dlPromise = null;
@@ -603,7 +784,7 @@ async function addFiles(files, at){
   if (!ok.length) { if (skipped.length) setStatus(sOrg, 'ยังเปิด ' + skipped[0].name + ' ไม่ได้ รองรับเฉพาะ PDF และรูปภาพ', 'err'); return; }
   snapshot();
   if (at == null || at > S.pages.length) at = S.pages.length;
-  const firstAdd = S.sources.size === 0;
+  const firstAdd = S.pages.length === 0;
   const newPages = [], errs = [];
   let k = 0;
   for (const f of ok) {
@@ -648,6 +829,7 @@ function render(){
   const has = S.pages.length > 0;
   empty.hidden = has; grid.hidden = !has; $('#export').hidden = !has;
   grid.innerHTML = '';
+  document.querySelectorAll('#export .after').forEach(e => e.remove());
   const frag = document.createDocumentFragment();
   S.pages.forEach((p, i) => frag.appendChild(card(p, i)));
   const add = document.createElement('button');
@@ -688,17 +870,23 @@ function card(p, i){
   }
   return el;
 }
+function setCount(long, short){
+  const c = $('#count'); c.innerHTML = '<span class="cl"></span><span class="cs"></span>';
+  c.firstChild.textContent = long; c.lastChild.textContent = short; c.title = long;
+}
 function updateTools(){
   const n = S.pages.length, s = S.sel.size;
-  $('#count').textContent = s ? 'เลือก ' + s + ' จาก ' + n + ' หน้า' : n + ' หน้า';
+  setCount(s ? 'เลือก ' + s + ' จาก ' + n + ' หน้า' : n + ' หน้า', s ? s + '/' + n : n + ' หน้า');
   const all = $('#sel-all'); all.checked = n > 0 && s === n; all.indeterminate = s > 0 && s < n; all.disabled = !n;
   $('#b-rotl').disabled = $('#b-rotr').disabled = $('#b-del').disabled = !s;
   $('#b-swap').disabled = s !== 2;
   $('#b-undo').disabled = !S.hist.length;
+  $('#b-reset').disabled = !n;
   // export option hints
   const selR = $('#ex-sel'); selR.disabled = !s;
   if (!s && selR.checked) $('#ex-all').checked = true;
-  $('#ex-all-d').textContent = n + ' หน้า จาก ' + S.sources.size + ' ไฟล์ ตามลำดับบนจอ';
+  const nSrc = new Set(S.pages.filter(p => !p.blank).map(p => p.src)).size;
+  $('#ex-all-d').textContent = n + ' หน้า จาก ' + nSrc + ' ไฟล์ ตามลำดับบนจอ';
   $('#ex-sel-d').textContent = s ? s + ' หน้าที่เลือก รวมเป็น PDF ไฟล์เดียว' : 'คลิกเลือกหน้าก่อน แล้วได้ PDF ไฟล์เดียว';
   $('#ex-each-d').textContent = (s ? 'หน้าที่เลือก ' + s : 'ทั้ง ' + n) + ' หน้า ได้ ZIP ไฟล์เดียว บันทึกครั้งเดียวจบ';
   $('#ex-n-d').textContent = (s ? 'แบ่งจากหน้าที่เลือก ' + s : 'แบ่งจากทั้ง ' + n) + ' หน้า เช่น ใบงานชุดละ 2 หน้า ได้เป็น ZIP';
@@ -752,6 +940,17 @@ $('#b-rotl').addEventListener('click', () => rotate(new Set(S.sel), -90));
 $('#b-rotr').addEventListener('click', () => rotate(new Set(S.sel), 90));
 $('#b-del').addEventListener('click', () => removePages(new Set(S.sel)));
 $('#b-undo').addEventListener('click', undo);
+function startOver(){
+  if (!S.pages.length) return;
+  snapshot();
+  S.pages = []; S.sel.clear(); S.anchor = null; customNames.clear();
+  $('#ex-name').value = 'รวมไฟล์'; $('#ex-all').checked = true;
+  render();
+  setStatus(sOrg, '');
+  setCount('เริ่มงานใหม่แล้ว · ถ้ากดผิด กดย้อนกลับได้', 'เริ่มใหม่');
+  document.getElementById('p-org').scrollIntoView({ block: 'start' });
+}
+$('#b-reset').addEventListener('click', startOver);
 $('#b-add').addEventListener('click', () => { insertAt = S.pages.length; inOrg.click(); });
 $('#b-swap').addEventListener('click', () => {
   const [a, b] = S.pages.map((p, i) => S.sel.has(p.id) ? i : -1).filter(i => i >= 0);
@@ -775,7 +974,7 @@ grid.addEventListener('keydown', e => {
   if (cardEl && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); selectClick(+cardEl.dataset.id, e); }
 });
 document.addEventListener('keydown', e => {
-  if ($('#p-org').hidden) return;
+  if (appEl.hidden || $('#p-org').hidden) return;
   const typing = /^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement.tagName) && document.activeElement.type !== 'checkbox';
   if (typing) return;
   if ((e.key === 'Delete' || e.key === 'Backspace') && S.sel.size) { e.preventDefault(); removePages(new Set(S.sel)); }
@@ -955,8 +1154,17 @@ function renderPlan(){
   eg.appendChild(box);
   if (pl.files.length > LIMIT) { const m = document.createElement('div'); m.textContent = 'แสดง ' + LIMIT + ' ไฟล์แรก ไฟล์ที่เหลือใช้ชื่ออัตโนมัติ'; eg.appendChild(m); }
 }
+function offerNew(){
+  const bar = sOrg.closest('.bar');
+  if (bar.querySelector('.after')) return;
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'btn after';
+  b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg>เริ่มงานใหม่';
+  b.addEventListener('click', startOver);
+  bar.insertBefore(b, sOrg);
+}
 $('#go-export').addEventListener('click', async () => {
   const btn = $('#go-export'); btn.disabled = true;
+  sOrg.closest('.bar').querySelectorAll('.after').forEach(e => e.remove());
   try {
     const pl = plan(), cache = new Map();
     if (!pl.files.length || !pl.files[0].pages.length) throw new Error('ยังไม่มีหน้าให้บันทึก');
@@ -967,7 +1175,7 @@ $('#go-export').addEventListener('click', async () => {
       setStatus(sOrg, 'กำลังสร้าง PDF ' + list.length + ' หน้า…', 'busy');
       const bytes = await buildPdf(list, cache);
       const fname = pl.name + '.pdf';
-      await save(fname, pdfBlob(bytes), sOrg, 'บันทึก ' + fname + ' แล้ว · ' + list.length + ' หน้า · ' + fmtSize(bytes.length), target);
+      if (await save(fname, pdfBlob(bytes), sOrg, 'บันทึก ' + fname + ' แล้ว · ' + list.length + ' หน้า · ' + fmtSize(bytes.length), target)) offerNew();
     } else {
       const zip = new JSZip(), used = new Set();
       for (let g = 0; g < pl.files.length; g++) {
@@ -982,7 +1190,7 @@ $('#go-export').addEventListener('click', async () => {
       setStatus(sOrg, 'กำลังรวมเป็น ZIP…', 'busy');
       const blob = await zip.generateAsync({ type: 'blob' });
       const fname = pl.name + '.zip';
-      await save(fname, blob, sOrg, 'บันทึกแล้ว · ' + pl.files.length + ' ไฟล์ PDF ใน ' + fname, target);
+      if (await save(fname, blob, sOrg, 'บันทึกแล้ว · ' + pl.files.length + ' ไฟล์ PDF ใน ' + fname, target)) offerNew();
     }
   } catch (e) { setStatus(sOrg, e.message || 'บันทึกไม่สำเร็จ', 'err'); }
   btn.disabled = false;
@@ -1130,16 +1338,18 @@ if (!libsOk) setStatus(sOrg, 'โหลดเครื่องมือไม�
 if (!inClaude) {
   const standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
   let deferred = null;
-  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; if (!standalone) $('#b-install').hidden = false; });
-  $('#b-install').addEventListener('click', async () => {
+  const ibtns = [...document.querySelectorAll('.js-install')];
+  const showI = on => ibtns.forEach(b => { b.hidden = !on; });
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; if (!standalone) showI(true); });
+  ibtns.forEach(b => b.addEventListener('click', async () => {
     if (!deferred) return;
     deferred.prompt();
     try { await deferred.userChoice; } catch (e) {}
-    deferred = null; $('#b-install').hidden = true;
-  });
-  window.addEventListener('appinstalled', () => { $('#b-install').hidden = true; });
+    deferred = null; showI(false);
+  }));
+  window.addEventListener('appinstalled', () => showI(false));
   const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (ios && !standalone) $('#ios-hint').hidden = false;
+  if (ios && !standalone) document.querySelectorAll('.js-ioshint').forEach(e => { e.hidden = false; });
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
   }
