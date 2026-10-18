@@ -290,8 +290,29 @@ textarea{font:15px/1.5 var(--f-body);color:var(--ink);background:var(--surface);
 /* ---------- admin ---------- */
 .adm{display:grid;gap:16px;padding-block:8px 24px}
 .adm-h{font-family:var(--f-display);font-size:28px;font-weight:700;margin:0}
-.adm-login{display:flex;flex-wrap:wrap;gap:12px;align-items:end;max-width:560px}
-.adm-login .field{flex:1 1 240px}
+.adm-card{justify-self:center;width:100%;max-width:440px;box-sizing:border-box;margin-top:clamp(8px,6vh,64px);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,4vw,34px);display:grid;gap:14px;box-shadow:0 10px 30px rgb(20 40 120/.08)}
+.adm-lock{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);justify-self:center}
+.adm-lock svg{width:28px;height:28px}
+.adm-card h2{font-family:var(--f-display);font-size:24px;font-weight:700;margin:0;text-align:center}
+.adm-sub{margin:-6px 0 4px;color:var(--muted);font-size:14px;text-align:center;line-height:1.55}
+.adm-card .field label{font-size:13px}
+.pw{position:relative;display:flex}
+.pw input{width:100%;box-sizing:border-box;padding:11px 48px 11px 12px;font-size:16px;border-radius:10px;letter-spacing:.04em}
+.pw-eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center}
+.pw-eye:hover{color:var(--accent);background:var(--sunk)}
+.pw-eye svg{width:20px;height:20px}
+.pw-eye .e-off,.pw-eye[aria-pressed="true"] .e-on{display:none}
+.pw-eye[aria-pressed="true"] .e-off{display:block}
+.adm-card .btn.big{width:100%;justify-content:center}
+.adm-card .status{text-align:center;min-height:1.6em}
+.adm-note{margin:0;font-size:12.5px;color:var(--muted);text-align:center}
+.adm-alt{font-size:13.5px;text-align:center;color:var(--accent);text-decoration:none;padding-top:10px;border-top:1px solid var(--line)}
+.adm-alt:hover{text-decoration:underline}
+.adm-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.reg-owner{margin:0;text-align:center;font-size:13.5px;color:var(--muted)}
+.reg-owner a,.foot-adm{color:var(--accent);text-decoration:none;font-weight:500}
+.reg-owner a:hover,.foot-adm:hover{text-decoration:underline}
+.foot-adm{color:var(--muted);font-weight:400}
 .adm-body{display:grid;gap:14px}
 .adm-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
 .adm-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
@@ -399,7 +420,7 @@ textarea{font:15px/1.5 var(--f-body);color:var(--ink);background:var(--surface);
 
     <footer class="hfoot">
       <span>พัฒนาโดย ครูนรากรณ์ จูงาม · โรงเรียนวัดบางปูน สพป.สิงห์บุรี</span>
-      <span>ใช้ฟรีเพื่อการศึกษา</span>
+      <span>ใช้ฟรีเพื่อการศึกษา · <a class="foot-adm" href="#admin">ผู้ดูแลระบบ</a></span>
     </footer>
   </section>
 
@@ -458,19 +479,37 @@ textarea{font:15px/1.5 var(--f-body);color:var(--ink);background:var(--surface);
           <div class="status" id="s-reg" role="status"></div>
         </div>
       </form>
+      <p class="reg-owner">ผู้ดูแลระบบ? <a href="#admin">เข้าสู่ระบบผู้ดูแล</a></p>
     </div>
   </section>
 
   <!-- ================= ADMIN (owner only, #admin) ================= -->
   <section class="adm" id="admin" hidden>
     <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>หน้าแรก</a>
-    <h2 class="adm-h">ผู้ลงทะเบียนใช้งาน</h2>
-    <form id="adm-login" class="adm-login" novalidate>
-      <div class="field"><label for="adm-pw">รหัสผ่านผู้ดูแล</label><input type="password" id="adm-pw" autocomplete="current-password" required></div>
-      <button class="btn primary" type="submit" id="adm-go">เข้าสู่ระบบ</button>
+    <form id="adm-login" class="adm-card" novalidate>
+      <span class="adm-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.4" fill="currentColor" stroke="none"/></svg></span>
+      <h2>เข้าสู่ระบบผู้ดูแล</h2>
+      <p class="adm-sub">สำหรับเจ้าของสถานีไฟล์ ดูรายชื่อผู้ลงทะเบียน และใช้เครื่องมือได้โดยไม่ต้องกรอกฟอร์ม</p>
+      <div class="field">
+        <label for="adm-pw">รหัสผ่าน</label>
+        <div class="pw">
+          <input type="password" id="adm-pw" autocomplete="current-password" required>
+          <button type="button" class="pw-eye" id="adm-eye" aria-label="แสดงรหัสผ่าน" aria-pressed="false">
+            <svg class="e-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="e-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.2M6.6 6.6C3.9 8.4 2 12 2 12s3.6 7 10 7a9.9 9.9 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+          </button>
+        </div>
+      </div>
+      <button class="btn primary big" type="submit" id="adm-go">เข้าสู่ระบบ</button>
       <div class="status" id="s-adm" role="status"></div>
+      <p class="adm-note">เข้าสู่ระบบครั้งเดียว เครื่องนี้จะไม่ต้องกรอกฟอร์มลงทะเบียนอีก</p>
+      <a class="adm-alt" href="#org">ไม่ใช่ผู้ดูแล? กลับไปลงทะเบียนใช้งาน</a>
     </form>
     <div id="adm-body" class="adm-body" hidden>
+      <div class="adm-top">
+        <h2 class="adm-h">ผู้ลงทะเบียนใช้งาน</h2>
+        <a class="btn primary" href="#org">เริ่มใช้งานเครื่องมือ<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
       <div class="adm-sum">
         <div class="st"><span class="sv" id="adm-total">0</span><span class="sl">ลงทะเบียนทั้งหมด</span></div>
         <div class="st"><span class="sv" id="adm-today">0</span><span class="sl">ลงทะเบียนวันนี้</span></div>
@@ -667,7 +706,7 @@ function showView(v){
 }
 function route(){
   const h = location.hash.slice(1);
-  if (h === 'admin') { showView('admin'); window.scrollTo(0, 0); return; }
+  if (h === 'admin') { showView('admin'); window.scrollTo(0, 0); if (!$('#adm-login').hidden) setTimeout(() => { try { $('#adm-pw').focus(); } catch (e) {} }, 50); return; }
   const tool = TOOLS.includes(h) ? h : null;
   if (tool && needsRegistration()) {
     pendingTool = tool; showView('register'); window.scrollTo(0, 0);
@@ -1645,11 +1684,19 @@ $('#adm-login').addEventListener('submit', async e => {
   }
   else admPw = '';
 });
+$('#adm-eye').addEventListener('click', () => {
+  const pw = $('#adm-pw'), on = pw.type === 'password';
+  pw.type = on ? 'text' : 'password';
+  $('#adm-eye').setAttribute('aria-pressed', on ? 'true' : 'false');
+  $('#adm-eye').setAttribute('aria-label', on ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน');
+  pw.focus();
+});
 $('#adm-q').addEventListener('input', admRender);
 $('#adm-refresh').addEventListener('click', () => admLoad(sAdm2));
 $('#adm-out').addEventListener('click', () => {
   admPw = ''; admItems = []; $('#adm-rows').innerHTML = '';
   $('#adm-body').hidden = true; $('#adm-login').hidden = false; setStatus(sAdm, 'ออกจากระบบแล้ว');
+  $('#adm-pw').type = 'password'; $('#adm-eye').setAttribute('aria-pressed', 'false');
 });
 $('#adm-csv').addEventListener('click', async () => {
   const name = 'รายชื่อผู้ลงทะเบียน_สถานีไฟล์_' + thDay(new Date()) + '.csv';
