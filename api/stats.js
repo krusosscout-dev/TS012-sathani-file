@@ -43,12 +43,12 @@ module.exports = async (req, res) => {
     } else if (req.method !== 'GET') {
       return res.status(405).json({ error: 'method_not_allowed' });
     }
-    const [v, vt, f, ft, fo, fp, fi] = await redis([
+    const [v, vt, f, ft, fo, fp, fi, rg] = await redis([
       ['GET', P + 'visits'], ['GET', P + 'visits:' + d], ['GET', P + 'files'], ['GET', P + 'files:' + d],
-      ['GET', P + 'files:org'], ['GET', P + 'files:pdf2img'], ['GET', P + 'files:img']
+      ['GET', P + 'files:org'], ['GET', P + 'files:pdf2img'], ['GET', P + 'files:img'], ['GET', P + 'regcount']
     ]);
     return res.status(200).json({
-      date: d, visits: +v || 0, today: +vt || 0, files: +f || 0, filesToday: +ft || 0,
+      date: d, visits: +v || 0, today: +vt || 0, files: +f || 0, filesToday: +ft || 0, registered: Math.max(0, +rg || 0),
       byTool: { org: +fo || 0, pdf2img: +fp || 0, img: +fi || 0 }
     });
   } catch (e) {

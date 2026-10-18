@@ -255,6 +255,59 @@ a.btn{text-decoration:none}
 }
 @media (prefers-reduced-motion:reduce){.mp.lift{animation:none}}
 
+/* ---------- register ---------- */
+.reg{display:grid;gap:14px;justify-items:center;padding-block:8px 24px}
+.reg .back{justify-self:start}
+.reg-card{width:100%;max-width:720px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3.5vw,32px);display:grid;gap:20px}
+.reg-head{display:flex;gap:14px;align-items:center}
+.reg-head h2{font-family:var(--f-display);font-size:clamp(22px,3vw,28px);font-weight:700;margin:0;line-height:1.2}
+.reg-head p{margin:2px 0 0;color:var(--muted);font-size:14px}
+.reg-head .mark svg{width:46px;height:46px}
+#reg-form{display:grid;gap:16px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+.fgrid .full{grid-column:1/-1}
+.field label b{color:var(--danger);font-weight:600}
+.field .opt{font-weight:400;color:var(--muted)}
+.fgrid input,.fgrid select,.fgrid textarea{width:100%;box-sizing:border-box}
+textarea{font:15px/1.5 var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical;min-width:0}
+.fgrid [aria-invalid="true"]{border-color:var(--danger);box-shadow:0 0 0 1px var(--danger)}
+.privacy{border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:13.5px}
+.pdpa{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:12px;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.pdpa svg{width:26px;height:26px;flex:none;color:var(--accent);margin-top:2px}
+.pdpa b{font-family:var(--f-display);font-size:16px;font-weight:600}
+.pdpa p{margin:2px 0 0;font-size:14px;line-height:1.6}
+.pv{padding:0 16px 14px;display:grid;gap:8px;color:var(--muted);line-height:1.6}
+.pv p{margin:0}
+.pv ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.pv b,.pv strong{color:var(--ink);font-weight:600}
+.pv-date{font-size:12.5px}
+.privacy summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent)}
+.privacy b{color:var(--ink);font-weight:600}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin:1px 0 0;flex:none}
+.reg-bar{border-top:0;padding-top:0}
+@media (max-width:560px){.fgrid{grid-template-columns:minmax(0,1fr)}.reg-bar .btn{width:100%;justify-content:center}}
+/* ---------- admin ---------- */
+.adm{display:grid;gap:16px;padding-block:8px 24px}
+.adm-h{font-family:var(--f-display);font-size:28px;font-weight:700;margin:0}
+.adm-login{display:flex;flex-wrap:wrap;gap:12px;align-items:end;max-width:560px}
+.adm-login .field{flex:1 1 240px}
+.adm-body{display:grid;gap:14px}
+.adm-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.adm-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.adm-tools .grow{flex:1 1 240px}
+.adm-tools input{width:100%;box-sizing:border-box}
+.adm-table{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.adm-table table{width:100%;border-collapse:collapse;font-size:14px;min-width:820px}
+.adm-table th{text-align:left;font-size:12px;letter-spacing:.03em;color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg);white-space:nowrap}
+.adm-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.adm-table tr:last-child td{border-bottom:0}
+.adm-table td.d{font:12.5px var(--f-mono);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.adm-table td.n{max-width:280px;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere}
+.adm-table .del{padding:4px 10px;font-size:13px;min-height:0;color:var(--danger)}
+.adm-table .del.arm{background:var(--danger);color:var(--surface);border-color:var(--danger)}
+.adm-empty{margin:0;padding:24px;text-align:center;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 /* ---------- fit small screens ---------- */
 @media (max-width:640px){
   .wrap{padding-block:16px 40px;gap:14px}
@@ -305,7 +358,7 @@ a.btn{text-decoration:none}
       <div class="hero-t">
         <div class="eyebrow">เครื่องมือจัดการไฟล์สำหรับครู</div>
         <h2 class="hero-h">รวม สลับ แยก และแปลงไฟล์ <span>ในที่เดียว</span></h2>
-        <p class="hero-p">จัดเอกสาร PDF และรูปกิจกรรมให้เสร็จในไม่กี่คลิก ใช้ฟรี ไม่ต้องสมัคร ไฟล์ไม่ถูกส่งขึ้นอินเทอร์เน็ต</p>
+        <p class="hero-p">จัดเอกสาร PDF และรูปกิจกรรมให้เสร็จในไม่กี่คลิก ลงทะเบียนครั้งเดียว ใช้ฟรีทุกฟีเจอร์ ไฟล์ไม่ถูกส่งขึ้นอินเทอร์เน็ต</p>
         <a class="btn primary big" id="h-start" href="#org">เริ่มใช้งาน<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <ul class="hfacts">
           <li>ไฟล์ไม่ออกจากเครื่อง</li><li>ใช้ได้ทั้งคอมและมือถือ</li><li>ติดตั้งแล้วใช้ออฟไลน์ได้</li>
@@ -339,8 +392,8 @@ a.btn{text-decoration:none}
     </div>
 
     <div class="hstats" id="hstats" hidden aria-live="polite">
+      <div class="st"><span class="sv" id="st-regs">0</span><span class="sl">ครูที่ลงทะเบียนใช้งาน</span></div>
       <div class="st"><span class="sv" id="st-visits">0</span><span class="sl">ครั้งที่เปิดใช้งานทั้งหมด</span></div>
-      <div class="st"><span class="sv" id="st-today">0</span><span class="sl">ครั้งที่เปิดใช้งานวันนี้</span></div>
       <div class="st"><span class="sv" id="st-files">0</span><span class="sl">ไฟล์ที่สร้างด้วยสถานีไฟล์</span></div>
     </div>
 
@@ -348,6 +401,96 @@ a.btn{text-decoration:none}
       <span>พัฒนาโดย ครูนรากรณ์ จูงาม · โรงเรียนวัดบางปูน สพป.สิงห์บุรี</span>
       <span>ใช้ฟรีเพื่อการศึกษา</span>
     </footer>
+  </section>
+
+  <!-- ================= REGISTER (once per device) ================= -->
+  <section class="reg" id="register" hidden>
+    <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>หน้าแรก</a>
+    <div class="reg-card">
+      <div class="reg-head">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="currentColor"/><rect x="7" y="6" width="8" height="11" rx="1.5" fill="#fff"/><rect x="17" y="6" width="8" height="11" rx="1.5" fill="#fff" opacity=".7"/><rect x="7" y="19" width="18" height="7" rx="1.5" fill="#fff" opacity=".85"/></svg></span>
+        <div>
+          <h2>ลงทะเบียนใช้งานสถานีไฟล์</h2>
+          <p>กรอกครั้งเดียวในเครื่องนี้ แล้วใช้ได้ฟรีทุกฟีเจอร์</p>
+        </div>
+      </div>
+      <form id="reg-form" novalidate>
+        <div class="fgrid">
+          <div class="field full"><label for="rg-name">ชื่อ-นามสกุล <b aria-hidden="true">*</b></label><input type="text" id="rg-name" autocomplete="name" maxlength="100" required></div>
+          <div class="field"><label for="rg-pos">ตำแหน่ง <b aria-hidden="true">*</b></label>
+            <select id="rg-pos" required>
+              <option value="">เลือกตำแหน่ง</option>
+              <option>ครู</option><option>ครูผู้ช่วย</option><option>ผู้บริหารสถานศึกษา</option><option>ศึกษานิเทศก์</option>
+              <option>พนักงานราชการ / ครูอัตราจ้าง</option><option>บุคลากรทางการศึกษา</option><option>นักศึกษาฝึกประสบการณ์วิชาชีพครู</option><option>อื่น ๆ</option>
+            </select></div>
+          <div class="field"><label for="rg-area">สังกัด / เขตพื้นที่ <b aria-hidden="true">*</b></label><input type="text" id="rg-area" maxlength="100" placeholder="เช่น สพป.สิงห์บุรี" required></div>
+          <div class="field full"><label for="rg-school">โรงเรียน / หน่วยงาน <b aria-hidden="true">*</b></label><input type="text" id="rg-school" maxlength="150" placeholder="เช่น โรงเรียนวัดบางปูน" required></div>
+          <div class="field full"><label for="rg-note">แลกเปลี่ยนเรียนรู้ <span class="opt">(ไม่บังคับ)</span></label><textarea id="rg-note" rows="3" maxlength="1000" placeholder="อยากใช้สถานีไฟล์ทำงานอะไร หรืออยากให้เพิ่มฟีเจอร์อะไร (ไม่ต้องใส่ข้อมูลส่วนตัว เช่น เบอร์โทร)"></textarea></div>
+        </div>
+        <div class="pdpa" role="note" aria-labelledby="pdpa-h">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div>
+            <b id="pdpa-h">การเก็บข้อมูลส่วนบุคคล (PDPA)</b>
+            <p>สถานีไฟล์ขอเก็บข้อมูลเท่าที่จำเป็น ได้แก่ ชื่อ-นามสกุล ตำแหน่ง โรงเรียน และสังกัด เพื่อนับจำนวนผู้ใช้และพัฒนาระบบ ตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 <strong>ไม่เก็บไฟล์ อีเมล หรือเบอร์โทรศัพท์</strong> และคุณขอดู แก้ไข หรือลบข้อมูลได้ทุกเมื่อ</p>
+          </div>
+        </div>
+        <details class="privacy">
+          <summary>อ่านประกาศความเป็นส่วนตัวฉบับเต็ม</summary>
+          <div class="pv">
+            <p>ประกาศนี้จัดทำตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) เพื่อแจ้งให้ผู้ใช้งานสถานีไฟล์ทราบก่อนให้ความยินยอม</p>
+            <ol>
+              <li><b>ผู้ควบคุมข้อมูลส่วนบุคคล:</b> ครูนรากรณ์ จูงาม ผู้พัฒนาสถานีไฟล์ โรงเรียนวัดบางปูน สพป.สิงห์บุรี</li>
+              <li><b>ข้อมูลที่เก็บ:</b> ชื่อ-นามสกุล ตำแหน่ง โรงเรียน/หน่วยงาน สังกัด/เขตพื้นที่ วันเวลาที่ลงทะเบียน และข้อความแลกเปลี่ยนเรียนรู้ (ถ้ากรอก) ระบบ<strong>ไม่เก็บ</strong>ไฟล์ที่คุณใช้งาน อีเมล เบอร์โทรศัพท์ หรือที่อยู่ IP ไฟล์ทั้งหมดประมวลผลในเครื่องของคุณเท่านั้น</li>
+              <li><b>วัตถุประสงค์:</b> (1) ทราบจำนวนและกลุ่มผู้ใช้งาน เพื่อรายงานผลและพัฒนาระบบ (2) รับข้อเสนอแนะและแลกเปลี่ยนเรียนรู้ระหว่างครู</li>
+              <li><b>ฐานทางกฎหมาย:</b> ความยินยอมของเจ้าของข้อมูล (มาตรา 19)</li>
+              <li><b>การเปิดเผยข้อมูล:</b> ไม่ขาย ไม่ส่งต่อให้บุคคลอื่น อาจนำเสนอเป็นภาพรวมโดยไม่ระบุตัวบุคคล เช่น จำนวนผู้ใช้แยกตามสังกัด</li>
+              <li><b>การจัดเก็บและความปลอดภัย:</b> จัดเก็บในฐานข้อมูลบนระบบคลาวด์ (Vercel และ Upstash) ซึ่งเซิร์ฟเวอร์อาจตั้งอยู่ต่างประเทศ เข้าถึงได้เฉพาะผู้ควบคุมข้อมูลด้วยรหัสผ่าน</li>
+              <li><b>ระยะเวลาเก็บ:</b> ตลอดระยะเวลาที่ให้บริการสถานีไฟล์ หรือจนกว่าคุณจะขอลบ หรือถอนความยินยอม</li>
+              <li><b>สิทธิของเจ้าของข้อมูล:</b> คุณมีสิทธิขอเข้าถึงและขอสำเนาข้อมูล ขอแก้ไขให้ถูกต้อง ขอลบ ขอระงับการใช้ คัดค้านการประมวลผล และถอนความยินยอมได้ทุกเมื่อ การถอนความยินยอมไม่กระทบการประมวลผลที่ทำไปแล้วก่อนหน้า และหากเห็นว่ามีการใช้ข้อมูลไม่ถูกต้อง คุณร้องเรียนต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล (สคส.) ได้</li>
+              <li><b>ช่องทางติดต่อ:</b> ครูนรากรณ์ จูงาม โรงเรียนวัดบางปูน สพป.สิงห์บุรี</li>
+            </ol>
+            <p class="pv-date">ประกาศ ณ วันที่ 18 ตุลาคม 2569</p>
+          </div>
+        </details>
+        <label class="consent"><input type="checkbox" id="rg-consent"> <span>ข้าพเจ้าได้อ่านและเข้าใจประกาศความเป็นส่วนตัว และ<strong>ยินยอม</strong>ให้เก็บและใช้ข้อมูลส่วนบุคคลข้างต้นตามวัตถุประสงค์ที่แจ้งไว้ ตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 โดยทราบว่าสามารถถอนความยินยอมได้ทุกเมื่อ</span></label>
+        <div class="bar reg-bar">
+          <button class="btn primary big" type="submit" id="rg-submit">ลงทะเบียนและเริ่มใช้งาน</button>
+          <div class="status" id="s-reg" role="status"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= ADMIN (owner only, #admin) ================= -->
+  <section class="adm" id="admin" hidden>
+    <a class="back" href="#home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>หน้าแรก</a>
+    <h2 class="adm-h">ผู้ลงทะเบียนใช้งาน</h2>
+    <form id="adm-login" class="adm-login" novalidate>
+      <div class="field"><label for="adm-pw">รหัสผ่านผู้ดูแล</label><input type="password" id="adm-pw" autocomplete="current-password" required></div>
+      <button class="btn primary" type="submit" id="adm-go">เข้าสู่ระบบ</button>
+      <div class="status" id="s-adm" role="status"></div>
+    </form>
+    <div id="adm-body" class="adm-body" hidden>
+      <div class="adm-sum">
+        <div class="st"><span class="sv" id="adm-total">0</span><span class="sl">ลงทะเบียนทั้งหมด</span></div>
+        <div class="st"><span class="sv" id="adm-today">0</span><span class="sl">ลงทะเบียนวันนี้</span></div>
+        <div class="st"><span class="sv" id="adm-areas">0</span><span class="sl">สังกัด / เขตพื้นที่</span></div>
+      </div>
+      <div class="adm-tools">
+        <div class="field grow"><label for="adm-q">ค้นหา</label><input type="text" id="adm-q" placeholder="ชื่อ โรงเรียน หรือสังกัด"></div>
+        <button class="btn" type="button" id="adm-csv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4"/><path d="M5 20h14"/></svg>ดาวน์โหลด Excel</button>
+        <button class="btn" type="button" id="adm-refresh">รีเฟรช</button>
+        <button class="btn" type="button" id="adm-out">ออกจากระบบ</button>
+      </div>
+      <div class="status" id="s-adm2" role="status"></div>
+      <div class="adm-table">
+        <table>
+          <thead><tr><th>วันที่</th><th>ชื่อ-นามสกุล</th><th>ตำแหน่ง</th><th>โรงเรียน / หน่วยงาน</th><th>สังกัด / เขต</th><th>แลกเปลี่ยนเรียนรู้</th><th><span class="sr">ลบ</span></th></tr></thead>
+          <tbody id="adm-rows"></tbody>
+        </table>
+        <p class="adm-empty" id="adm-empty" hidden>ยังไม่มีผู้ลงทะเบียน</p>
+      </div>
+    </div>
   </section>
 
   <div class="app" id="app" hidden>
@@ -516,18 +659,30 @@ tabs.forEach((t, i) => {
 const homeEl = document.getElementById('home'), appEl = document.getElementById('app');
 const TOOLS = ['org', 'pdf2img', 'img'];
 const installedApp = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+const regEl = document.getElementById('register'), admEl = document.getElementById('admin');
+let pendingTool = 'org';
+function showView(v){
+  homeEl.hidden = v !== 'home'; appEl.hidden = v !== 'app'; regEl.hidden = v !== 'register'; admEl.hidden = v !== 'admin';
+  document.body.classList.toggle('on-home', v === 'home');
+}
 function route(){
   const h = location.hash.slice(1);
+  if (h === 'admin') { showView('admin'); window.scrollTo(0, 0); return; }
   const tool = TOOLS.includes(h) ? h : null;
-  homeEl.hidden = !!tool; appEl.hidden = !tool;
-  document.body.classList.toggle('on-home', !tool);
+  if (tool && needsRegistration()) {
+    pendingTool = tool; showView('register'); window.scrollTo(0, 0);
+    checkRegistration().then(() => { if (location.hash.slice(1) === tool && !needsRegistration()) route(); });
+    return;
+  }
+  showView(tool ? 'app' : 'home');
   if (tool) show(tool); else refreshStats();
   window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route);
 // every time the site is opened (new tab, reopened browser, reload, installed app) it starts on the home page
-if (location.hash && location.hash !== '#home') { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
-homeEl.hidden = false; appEl.hidden = true; document.body.classList.add('on-home');
+// (the owner's #admin page is the one exception, so it can be bookmarked)
+if (location.hash && location.hash !== '#home' && location.hash !== '#admin') { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+showView('home');
 tabs.forEach(t => t.addEventListener('click', () => { try { history.replaceState(null, '', '#' + t.id.slice(2)); } catch (e) {} }));
 
 /* ---------- saving ---------- */
@@ -563,7 +718,7 @@ if (canPick || canShare) {
   try { askBox.checked = localStorage.getItem(ASK_KEY) !== '0'; } catch (e) {}
   askBox.addEventListener('change', () => { try { localStorage.setItem(ASK_KEY, askBox.checked ? '1' : '0'); } catch (e) {} });
 }
-const MIME = { pdf: 'application/pdf', zip: 'application/zip', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' };
+const MIME = { pdf: 'application/pdf', zip: 'application/zip', jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', csv: 'text/csv' };
 function clearReady(st){ const bar = st.closest('.bar'); if (bar) bar.querySelectorAll('.ready').forEach(e => e.remove()); }
 function offerReady(filename, data, st, okText){
   clearReady(st);
@@ -598,7 +753,8 @@ const FILE_TYPES = {
   zip: { description: 'ไฟล์ ZIP', accept: { 'application/zip': ['.zip'] } },
   jpg: { description: 'รูป JPG', accept: { 'image/jpeg': ['.jpg', '.jpeg'] } },
   png: { description: 'รูป PNG', accept: { 'image/png': ['.png'] } },
-  webp: { description: 'รูป WEBP', accept: { 'image/webp': ['.webp'] } }
+  webp: { description: 'รูป WEBP', accept: { 'image/webp': ['.webp'] } },
+  csv: { description: 'ไฟล์ Excel (CSV)', accept: { 'text/csv': ['.csv'] } }
 };
 // returns { handle } to write into, {} for a normal download, or null when the person cancelled
 async function pickTarget(filename, st){
@@ -1339,7 +1495,7 @@ let statsBusy = false, statsAt = 0;
 function renderStats(d){
   if (!d || typeof d.visits !== 'number') return;
   const f = n => Number(n || 0).toLocaleString('th-TH');
-  $('#st-visits').textContent = f(d.visits); $('#st-today').textContent = f(d.today); $('#st-files').textContent = f(d.files);
+  $('#st-regs').textContent = f(d.registered); $('#st-visits').textContent = f(d.visits); $('#st-files').textContent = f(d.files);
   $('#hstats').hidden = false;
 }
 async function refreshStats(){
@@ -1365,6 +1521,142 @@ function trackFiles(tool, n){
   } catch (e) {}
 }
 refreshStats();
+
+/* ---------- registration: once per device, only when the site's database is ready ---------- */
+const REG_KEY = 'sfRegistered';
+let regState = (inClaude || !statsOn) ? 'off' : 'unknown';   // 'on' | 'off' | 'unknown'
+let regCheck = null;
+function isRegistered(){ try { return !!localStorage.getItem(REG_KEY); } catch (e) { return false; } }
+function needsRegistration(){ return regState !== 'off' && !isRegistered(); }
+function checkRegistration(){
+  if (regState !== 'unknown') return Promise.resolve();
+  if (!regCheck) {
+    regCheck = fetch('/api/register', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { regState = d && d.open ? 'on' : 'off'; })
+      .catch(() => { regState = 'off'; });   // offline or not set up: never lock teachers out
+  }
+  return regCheck;
+}
+checkRegistration();
+const regForm = document.getElementById('reg-form'), sReg = $('#s-reg');
+const REG_FIELDS = [['rg-name', 'ชื่อ-นามสกุล'], ['rg-pos', 'ตำแหน่ง'], ['rg-area', 'สังกัด / เขตพื้นที่'], ['rg-school', 'โรงเรียน / หน่วยงาน']];
+regForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  const missing = [];
+  REG_FIELDS.forEach(([id, label]) => {
+    const el = document.getElementById(id), bad = el.value.trim().length < (id === 'rg-pos' ? 1 : 2);
+    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    if (bad) missing.push(label);
+  });
+  if (missing.length) { setStatus(sReg, 'กรุณากรอก ' + missing.join(', '), 'err'); document.getElementById(REG_FIELDS.find(f => missing.includes(f[1]))[0]).focus(); return; }
+  if (!$('#rg-consent').checked) { setStatus(sReg, 'กรุณาอ่านประกาศความเป็นส่วนตัว แล้วติ๊กช่องยินยอมก่อนลงทะเบียน', 'err'); $('#rg-consent').focus(); return; }
+  const btn = $('#rg-submit'); btn.disabled = true;
+  setStatus(sReg, 'กำลังลงทะเบียน…', 'busy');
+  const body = { name: $('#rg-name').value, position: $('#rg-pos').value, area: $('#rg-area').value, school: $('#rg-school').value, note: $('#rg-note').value, consent: true };
+  let done = false;
+  try {
+    const r = await fetch('/api/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (r.ok) done = true;
+    else if (r.status === 429) setStatus(sReg, 'มีการลงทะเบียนจากเครือข่ายนี้มากเกินไป กรุณาลองใหม่ในอีก 1 ชั่วโมง', 'err');
+    else if (r.status === 400) setStatus(sReg, 'ข้อมูลยังไม่ครบ กรุณาตรวจสอบอีกครั้ง', 'err');
+    else { regState = 'off'; done = 'skip'; }   // server not ready: let the teacher in, ask again next visit
+  } catch (err) { regState = 'off'; done = 'skip'; }
+  btn.disabled = false;
+  if (!done) return;
+  if (done === true) {
+    try { localStorage.setItem(REG_KEY, JSON.stringify({ at: new Date().toISOString() })); } catch (e2) {}
+    statsAt = 0; regForm.reset();
+  }
+  setStatus(sReg, '');
+  if (location.hash.slice(1) === pendingTool) route(); else location.hash = pendingTool;
+});
+
+/* ---------- owner's page (#admin) ---------- */
+let admPw = '', admItems = [];
+const sAdm = $('#s-adm'), sAdm2 = $('#s-adm2');
+async function admCall(payload){
+  const r = await fetch('/api/admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.assign({ password: admPw }, payload)) });
+  let d = null; try { d = await r.json(); } catch (e) {}
+  return { status: r.status, d: d || {} };
+}
+const ADM_ERR = {
+  401: 'รหัสผ่านไม่ถูกต้อง',
+  429: 'ใส่รหัสผิดหลายครั้งเกินไป กรุณารอ 15 นาทีแล้วลองใหม่',
+  admin_not_configured: 'ยังไม่ได้ตั้งรหัสผ่านผู้ดูแล (ADMIN_PASSWORD) ใน Vercel',
+  not_configured: 'ยังไม่ได้เชื่อมฐานข้อมูลกับเว็บ'
+};
+async function admLoad(st){
+  setStatus(st, 'กำลังโหลด…', 'busy');
+  try {
+    const { status, d } = await admCall({ action: 'list' });
+    if (status !== 200) { setStatus(st, ADM_ERR[d.error] || ADM_ERR[status] || 'โหลดไม่สำเร็จ ลองใหม่อีกครั้ง', 'err'); return false; }
+    admItems = d.items || []; admRender(); setStatus(st, ''); return true;
+  } catch (e) { setStatus(st, 'เชื่อมต่อไม่ได้ ตรวจอินเทอร์เน็ตแล้วลองใหม่', 'err'); return false; }
+}
+const thDate = iso => { try { return new Date(iso).toLocaleString('th-TH', { timeZone: 'Asia/Bangkok', day: 'numeric', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' }); } catch (e) { return iso || ''; } };
+const thDay = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Bangkok', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+function admRender(){
+  const q = $('#adm-q').value.trim().toLowerCase();
+  const rows = admItems.filter(x => !q || [x.name, x.school, x.area, x.position, x.note].join(' ').toLowerCase().includes(q));
+  const today = thDay(new Date());
+  $('#adm-total').textContent = admItems.length.toLocaleString('th-TH');
+  $('#adm-today').textContent = admItems.filter(x => x.at && thDay(new Date(x.at)) === today).length.toLocaleString('th-TH');
+  $('#adm-areas').textContent = new Set(admItems.map(x => (x.area || '').trim()).filter(Boolean)).size.toLocaleString('th-TH');
+  const tb = $('#adm-rows'); tb.innerHTML = '';
+  rows.forEach(x => {
+    const tr = document.createElement('tr');
+    [['d', thDate(x.at)], ['', x.name], ['', x.position], ['', x.school], ['', x.area], ['n', x.note || '–']].forEach(([cls, v]) => {
+      const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = v || ''; tr.appendChild(td);
+    });
+    const td = document.createElement('td'); const b = document.createElement('button');
+    b.type = 'button'; b.className = 'btn del'; b.textContent = 'ลบ'; b.setAttribute('aria-label', 'ลบ ' + (x.name || ''));
+    b.addEventListener('click', () => admDelete(x, b));
+    td.appendChild(b); tr.appendChild(td); tb.appendChild(tr);
+  });
+  $('#adm-empty').hidden = rows.length > 0;
+  $('#adm-empty').textContent = admItems.length ? 'ไม่พบรายชื่อที่ค้นหา' : 'ยังไม่มีผู้ลงทะเบียน';
+}
+async function admDelete(x, b){
+  if (!b.classList.contains('arm')) {   // first click arms, second click deletes
+    b.classList.add('arm'); b.textContent = 'ยืนยันลบ';
+    setTimeout(() => { b.classList.remove('arm'); b.textContent = 'ลบ'; }, 4000);
+    return;
+  }
+  b.disabled = true;
+  try {
+    const { status, d } = await admCall({ action: 'delete', id: x.id });
+    if (status === 200) { setStatus(sAdm2, 'ลบข้อมูลของ ' + (x.name || '') + ' แล้ว', 'ok'); await admLoad(sAdm2); statsAt = 0; }
+    else { setStatus(sAdm2, ADM_ERR[d.error] || ADM_ERR[status] || 'ลบไม่สำเร็จ', 'err'); b.disabled = false; }
+  } catch (e) { setStatus(sAdm2, 'เชื่อมต่อไม่ได้', 'err'); b.disabled = false; }
+}
+$('#adm-login').addEventListener('submit', async e => {
+  e.preventDefault();
+  admPw = $('#adm-pw').value;
+  if (!admPw) { setStatus(sAdm, 'กรุณาใส่รหัสผ่าน', 'err'); return; }
+  $('#adm-go').disabled = true;
+  const okLogin = await admLoad(sAdm);
+  $('#adm-go').disabled = false;
+  if (okLogin) { $('#adm-login').hidden = true; $('#adm-body').hidden = false; $('#adm-pw').value = ''; }
+  else admPw = '';
+});
+$('#adm-q').addEventListener('input', admRender);
+$('#adm-refresh').addEventListener('click', () => admLoad(sAdm2));
+$('#adm-out').addEventListener('click', () => {
+  admPw = ''; admItems = []; $('#adm-rows').innerHTML = '';
+  $('#adm-body').hidden = true; $('#adm-login').hidden = false; setStatus(sAdm, 'ออกจากระบบแล้ว');
+});
+$('#adm-csv').addEventListener('click', async () => {
+  const name = 'รายชื่อผู้ลงทะเบียน_สถานีไฟล์_' + thDay(new Date()) + '.csv';
+  const target = await pickTarget(name, sAdm2);
+  if (!target) return;
+  // spreadsheet-safe cells: quote everything, neutralise formulas
+  const cell = v => { let t = String(v == null ? '' : v); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return '"' + t.replace(/"/g, '""') + '"'; };
+  const lines = [['วันที่ลงทะเบียน', 'ชื่อ-นามสกุล', 'ตำแหน่ง', 'โรงเรียน / หน่วยงาน', 'สังกัด / เขตพื้นที่', 'แลกเปลี่ยนเรียนรู้'].map(cell).join(',')]
+    .concat(admItems.map(x => [thDate(x.at), x.name, x.position, x.school, x.area, x.note].map(cell).join(',')));
+  await save(name, new Blob(['﻿' + lines.join('\r\n')], { type: 'text/csv' }), sAdm2, 'บันทึก ' + name + ' แล้ว · ' + admItems.length + ' รายชื่อ', target);
+});
+if (location.hash === '#admin') route();
 
 /* ---------- install as an app (standalone site only) ---------- */
 if (!inClaude) {
